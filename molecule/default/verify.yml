@@ -1,0 +1,15 @@
+---
+- name: Verify
+  hosts: all
+  vars_files:
+    - ../../defaults/main.yml
+  tasks:
+    - name: Verify loaded libraries
+      ansible.builtin.command: "ldconfig -p"
+      register: output
+      become: true
+    - name: Assert library is loaded
+      ansible.builtin.assert:
+        that:
+          - "'libclntsh.so' in output.stdout"
+          - "'libocci.so' in output.stdout"

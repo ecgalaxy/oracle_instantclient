@@ -1,0 +1,13 @@
+---
+- name: Import Yum GPG keys
+  ansible.builtin.rpm_key:
+    key: "{{ item }}"
+    state: present
+  become: true
+  loop: "{{ oracle_instantclient_imported_gpg_keys }}"
+
+- name: Install Oracle Client
+  ansible.builtin.yum:
+    name: "{{ oracle_instantclient_rpm_package }}"
+    state: present
+  become: true

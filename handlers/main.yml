@@ -1,0 +1,4 @@
+---
+- name: Execute ldconfig
+  ansible.builtin.command: ldconfig
+  become: true

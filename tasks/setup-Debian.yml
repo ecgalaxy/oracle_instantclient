@@ -1,0 +1,59 @@
+---
+- name: Install dependencies
+  ansible.builtin.package:
+    name:
+      - libaio1
+    state: present
+  become: true
+
+- name: Download Instant Client
+  ansible.builtin.get_url:
+    url: "{{ oracle_instantclient_url }}"
+    dest: /tmp/instantclient.zip
+    mode: 0655
+    checksum: "{{ oracle_instantclient_checksum }}"
+  changed_when: false
+
+- name: Ensure Instant Client folder exists
+  ansible.builtin.file:
+    path: "{{ oracle_instantclient_path }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  become: true
+
+- name: Extract Instant Client archive
+  ansible.builtin.unarchive:
+    src: /tmp/instantclient.zip
+    dest: "{{ oracle_instantclient_basepath }}"
+    creates: "{{ oracle_instantclient_path }}/libclntsh.so"
+    owner: root
+    group: root
+    remote_src: yes
+  become: true
+
+- name: Create Instant Client symlink
+  ansible.builtin.file:
+    src: "{{ oracle_instantclient_path }}"
+    dest: "{{ oracle_instantclient_symlink }}"
+    owner: root
+    group: root
+    state: link
+  become: true
+
+- name: Create dynamic linker configuration
+  ansible.builtin.template:
+    src: oracle-instantclient.conf.j2
+    dest: /etc/ld.so.conf.d/oracle-instantclient.conf
+    owner: root
+    group: root
+    mode: 'u=rw,go=r'
+  become: true
+  notify: Execute ldconfig
+
+- name: Remove Instant Client archive
+  ansible.builtin.file:
+    path: /tmp/instantclient.zip
+    state: absent
+  changed_when: false
