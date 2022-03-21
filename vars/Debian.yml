@@ -1,0 +1,8 @@
+---
+oracle_instantclient_basic_url: "https://download.oracle.com/otn_software/linux/instantclient/{{ oracle_instantclient_version | replace('.','') }}/instantclient-basic-linux.x64-{{ oracle_instantclient_version }}dbru.zip"
+oracle_instantclient_basic_checksum: "sha256:25428f2aef72f809bd8ea5a3ea7ac9e2700d29a0082575e9cd63eed6fa9f083e"
+oracle_instantclient_sdk_url: "https://download.oracle.com/otn_software/linux/instantclient/{{ oracle_instantclient_version | replace('.','') }}/instantclient-sdk-linux.x64-{{ oracle_instantclient_version }}dbru.zip"
+oracle_instantclient_sdk_checksum: "sha256:e4617a5b6592980f52fb69814e2edf6ec51725cbf3dd6fd67b26995c7944725d"
+oracle_instantclient_basepath: /opt/oracle
+oracle_instantclient_path: "{{ oracle_instantclient_basepath }}/instantclient_{{ oracle_instantclient_version[:4] | replace('.','_') }}"
+oracle_instantclient_symlink: "{{ oracle_instantclient_basepath }}/instantclient"

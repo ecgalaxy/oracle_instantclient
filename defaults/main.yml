@@ -1,9 +1,2 @@
 ---
-oracle_instantclient_rpm_package: https://download.oracle.com/otn_software/linux/instantclient/oracle-instantclient-basic-linuxx64.rpm
-oracle_instantclient_imported_gpg_keys:
-  - https://yum.oracle.com/RPM-GPG-KEY-oracle-ol8
-oracle_instantclient_url: https://download.oracle.com/otn_software/linux/instantclient/215000/instantclient-basic-linux.x64-21.5.0.0.0dbru.zip
-oracle_instantclient_checksum: "sha256:25428f2aef72f809bd8ea5a3ea7ac9e2700d29a0082575e9cd63eed6fa9f083e"
-oracle_instantclient_basepath: /opt/oracle
-oracle_instantclient_path: "{{ oracle_instantclient_basepath }}/instantclient_21_5"
-oracle_instantclient_symlink: "{{ oracle_instantclient_basepath }}/instantclient"
+oracle_instantclient_version: "21.5.0.0.0"

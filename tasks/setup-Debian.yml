@@ -6,12 +6,20 @@
     state: present
   become: true
 
-- name: Download Instant Client
+- name: Download Instant Client basic
   ansible.builtin.get_url:
-    url: "{{ oracle_instantclient_url }}"
-    dest: /tmp/instantclient.zip
+    url: "{{ oracle_instantclient_basic_url }}"
+    dest: /tmp/instantclient-basic.zip
     mode: 0655
-    checksum: "{{ oracle_instantclient_checksum }}"
+    checksum: "{{ oracle_instantclient_basic_checksum }}"
+  changed_when: false
+
+- name: Download Instant Client SDK
+  ansible.builtin.get_url:
+    url: "{{ oracle_instantclient_sdk_url }}"
+    dest: /tmp/instantclient-sdk.zip
+    mode: 0655
+    checksum: "{{ oracle_instantclient_sdk_checksum }}"
   changed_when: false
 
 - name: Ensure Instant Client folder exists
@@ -23,11 +31,21 @@
     mode: 0755
   become: true
 
-- name: Extract Instant Client archive
+- name: Extract Instant Client basic archive
   ansible.builtin.unarchive:
-    src: /tmp/instantclient.zip
+    src: /tmp/instantclient-basic.zip
     dest: "{{ oracle_instantclient_basepath }}"
     creates: "{{ oracle_instantclient_path }}/libclntsh.so"
+    owner: root
+    group: root
+    remote_src: yes
+  become: true
+
+- name: Extract Instant Client SDK archive
+  ansible.builtin.unarchive:
+    src: /tmp/instantclient-sdk.zip
+    dest: "{{ oracle_instantclient_basepath }}"
+    creates: "{{ oracle_instantclient_path }}/sdk/include/oratypes.h"
     owner: root
     group: root
     remote_src: yes
@@ -52,8 +70,11 @@
   become: true
   notify: Execute ldconfig
 
-- name: Remove Instant Client archive
+- name: Remove Instant Client archives
   ansible.builtin.file:
-    path: /tmp/instantclient.zip
+    path: "{{ item }}"
     state: absent
+  loop:
+    - /tmp/instantclient-basic.zip
+    - /tmp/instantclient-sdk.zip
   changed_when: false

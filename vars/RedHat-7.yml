@@ -1,0 +1,5 @@
+---
+oracle_instantclient_rpm_packages:
+  - "https://download.oracle.com/otn_software/linux/instantclient/{{ oracle_instantclient_version | replace('.','') }}/oracle-instantclient-basic-{{ oracle_instantclient_version }}-1.x86_64.rpm"
+  - "https://download.oracle.com/otn_software/linux/instantclient/{{ oracle_instantclient_version | replace('.','') }}/oracle-instantclient-devel-{{ oracle_instantclient_version }}-1.x86_64.rpm"
+oracle_instantclient_imported_gpg_keys: []
