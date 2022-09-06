@@ -3,7 +3,7 @@
 ## 0.3.x
 
 - Ubuntu 22.04 LTS support added.
-- Instant Client 21.6.0.0.0
+- Upstream Instant Client 21.x updates.
 
 ## 0.2.x
 
