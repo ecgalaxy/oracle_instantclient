@@ -2,3 +2,6 @@
 - name: Execute ldconfig
   ansible.builtin.command: ldconfig
   become: true
+  register: output
+  changed_when: false
+  failed_when: output.rc != 0
