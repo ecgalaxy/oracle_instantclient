@@ -6,7 +6,7 @@ An Ansible role which installs Oracle Instant Client.
 Requirements
 ------------
 
-None.
+- The `unzip` command, which can be provided by the `ecgalaxy.common_packages` role.
 
 Role Variables
 --------------
@@ -16,13 +16,14 @@ See defaults.
 Dependencies
 ------------
 
-- ecgalaxy.common_packages
+- Optional: ecgalaxy.common_packages
 
 Example Playbook
 ----------------
 
     - hosts: all
       roles:
+        - ecgalaxy.common_packages
         - ecgalaxy.oracle_instantclient
 
 License
