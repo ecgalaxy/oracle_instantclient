@@ -23,6 +23,7 @@ Example Playbook
 
     - hosts: all
       roles:
+        - ecgalaxy.bootstrap
         - ecgalaxy.common_packages
         - ecgalaxy.oracle_instantclient
 

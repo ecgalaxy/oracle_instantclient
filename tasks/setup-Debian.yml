@@ -2,7 +2,7 @@
 - name: Install dependencies
   ansible.builtin.package:
     name:
-      - libaio1
+      - libaio1*
     state: present
   become: true
 
