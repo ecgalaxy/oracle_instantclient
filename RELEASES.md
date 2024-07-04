@@ -1,5 +1,9 @@
 # Releases
 
+## 1.0.x
+
+- RHEL 7 support removed.
+
 ## 0.4.x
 
 - Ubuntu 24.04 LTS support added.

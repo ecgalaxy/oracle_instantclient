@@ -1,7 +1,7 @@
 ---
-oracle_instantclient_basic_url: "https://download.oracle.com/otn_software/linux/instantclient/{{ oracle_instantclient_version | replace('.', '') }}/instantclient-basic-linux.x64-{{ oracle_instantclient_version }}dbru.zip"
+oracle_instantclient_basic_url: "https://download.oracle.com/otn_software/linux/instantclient/{{ oracle_instantclient_version | replace('.', '') }}/instantclient-basic-linux.x64-{{ oracle_instantclient_version }}dbru.zip" # noqa yaml[line-length]
 oracle_instantclient_basic_checksum: "sha256:fd18de92caac2586fa4ef1d267902f527a67236989f3284bd32d644f83ed2a29"
-oracle_instantclient_sdk_url: "https://download.oracle.com/otn_software/linux/instantclient/{{ oracle_instantclient_version | replace('.', '') }}/instantclient-sdk-linux.x64-{{ oracle_instantclient_version }}dbru.zip"
+oracle_instantclient_sdk_url: "https://download.oracle.com/otn_software/linux/instantclient/{{ oracle_instantclient_version | replace('.', '') }}/instantclient-sdk-linux.x64-{{ oracle_instantclient_version }}dbru.zip" # noqa yaml[line-length]
 oracle_instantclient_sdk_checksum: "sha256:c4dc168fee1bc759e4f87c8bc10a7d949dd51b5f218fee997cac6a76602967c4"
 oracle_instantclient_basepath: /opt/oracle
 oracle_instantclient_path: "{{ oracle_instantclient_basepath }}/instantclient_{{ oracle_instantclient_version[:5] | replace('.', '_') }}"

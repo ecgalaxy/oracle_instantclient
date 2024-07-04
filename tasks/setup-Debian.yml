@@ -10,7 +10,7 @@
   ansible.builtin.get_url:
     url: "{{ oracle_instantclient_basic_url }}"
     dest: /tmp/instantclient-basic.zip
-    mode: 0655
+    mode: 'u=rw,go=r'
     checksum: "{{ oracle_instantclient_basic_checksum }}"
   changed_when: false
 
@@ -18,7 +18,7 @@
   ansible.builtin.get_url:
     url: "{{ oracle_instantclient_sdk_url }}"
     dest: /tmp/instantclient-sdk.zip
-    mode: 0655
+    mode: 'u=rw,go=r'
     checksum: "{{ oracle_instantclient_sdk_checksum }}"
   changed_when: false
 
@@ -28,7 +28,7 @@
     state: directory
     owner: root
     group: root
-    mode: 0755
+    mode: 'u=rwx,go=rx'
   become: true
 
 - name: Extract Instant Client basic archive
@@ -38,7 +38,7 @@
     creates: "{{ oracle_instantclient_path }}/libclntsh.so"
     owner: root
     group: root
-    remote_src: yes
+    remote_src: true
   become: true
 
 - name: Extract Instant Client SDK archive
@@ -48,7 +48,7 @@
     creates: "{{ oracle_instantclient_path }}/sdk/include/oratypes.h"
     owner: root
     group: root
-    remote_src: yes
+    remote_src: true
   become: true
 
 - name: Create Instant Client symlink
